@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mutation & Async</title>
+</head>
+<body>
+
+<button id="change">Change Text</button>
+<div id="content">Original</div>
+
+<script>
+  const c = content;
+  new MutationObserver(() => console.log("Mutation:", c.textContent))
+    .observe(c, { childList: true });
+
+  change.onclick = () => {
+    c.textContent = "Updated!";
+    Promise.resolve().then(() => console.log("Microtask: Promise")); //Same
+    setTimeout(() => console.log("Macrotask: setTimeout")); //Same
+  };
+
+  console.log("Script starts");
+  Promise.resolve().then(() => console.log("Microtask: First")); //Same
+  setTimeout(() => console.log("Macrotask: First")); //Same
+</script>
+
+</body>
+</html>

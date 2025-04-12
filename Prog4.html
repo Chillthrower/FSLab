@@ -1,0 +1,21 @@
+<!-- Interactive DOM manipulation and Event Handling in JavaScript -->
+
+<!DOCTYPE html>
+<html>
+<head><title>DOM & Events</title></head>
+<body>
+
+  <input id="username" placeholder="Enter name">
+  <button id="btn">Submit</button>
+  <p id="msg"></p>
+
+  <script>
+    onload = () => {
+      const n = username, m = msg;
+      btn.onclick = () => m.textContent = n.value ? `Hello, ${n.value}!` : "Enter a name!";
+      n.onkeyup = () => m.textContent = `Typing: ${n.value}`;
+    };
+  </script>
+
+</body>
+</html>

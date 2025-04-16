@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
 
 export default function App() {
-  const [count, set] = useState(0);
-  return (
-    <div className="App">
-      <h1>Counter App</h1>
-      <h1>Count: {count}</h1>
-      <button onClick={() => set(count + 1)}>Increment</button>
-      <button onClick={() => set(0)}>Reset</button>
-    </div>
-  );
+  const [msg, set] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000")
+      .then(res => res.json())
+      .then(d => set(d.message))
+      .catch(console.error);
+  }, []);
+
+  return <h1>{msg}</h1>;
 }
